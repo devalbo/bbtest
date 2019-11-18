@@ -1,3 +1,29 @@
+# BBTest
+
+This project was created to demonstrate how the use of `typeforce` (and most likely specifically the BigInt type) interfere with being able to successfully sign a transaction in the browser using a minifed Create React App. Use the `BbtConfig.js` file to enable/disable the use of the typeforce where it impacts the signing process.
+
+To reproduce the issue, perform the following steps assuming all dependencies have been installed and you have npx to act as content server:
+* Run `npm run build` to create production version
+* Run `npx serve -s build` to host production version locally
+* Navigate to http://localhost:5000 and open Console page in Dev Tools - you should see a bunch of log messages that end up with an exception with an error trace like `"Error: Expected property "1" of type BigInteger, got n
+    at a (http://localhost:5000/static/js/2.1ac6512d.chunk.js:1:197169)
+    at tfSubError (http://localhost:5000/static/js/2.1ac6512d.chunk.js:1:198347)
+    at http://localhost:5000/static/js/2.1ac6512d.chunk.js:1:22914
+    at Array.every (<anonymous>)
+    at t (http://localhost:5000/static/js/2.1ac6512d.chunk.js:1:22855)
+    at h (http://localhost:5000/static/js/2.1ac6512d.chunk.js:1:23411)
+    at Object.sign (http://localhost:5000/static/js/main.03369be5.chunk.js:1:2513)
+    at l.sign (http://localhost:5000/static/js/main.03369be5.chunk.js:1:1998)
+    at http://localhost:5000/static/js/2.1ac6512d.chunk.js:1:582734
+    at Array.some (<anonymous>)"`
+* change value of `_typeforceEnabled` to `false` in `BbtConfig.js` and rerun `npm run build`
+* Run `npx serve -s build` to host production version locally
+* Navigate to http://localhost:5000 and open Console page in Dev Tools - you should see the output of a fully signed transaction
+
+As a side note, in the past, I've been able to get a CRA to build/run successfully after running `npm run eject` as described here: https://gitlab.com/bch-dev/op-wallet.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
