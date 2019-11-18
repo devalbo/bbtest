@@ -23,7 +23,7 @@ To reproduce the issue, perform the following steps assuming all dependencies ha
 As a side note, in the past, I've been able to get a CRA to build/run successfully after running `npm run eject` as described here: https://gitlab.com/bch-dev/op-wallet.
 
 
-
+## CRA Boilerplate (not relevant to test)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
